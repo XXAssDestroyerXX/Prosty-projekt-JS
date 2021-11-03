@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Style.css">
+    <title>prosty projekt js</title>
+</head>
+<body>
+
+<div class="form">
+    <fieldset>
+        <div id="PoleA">
+            <h1>Wypelnij Pole:</h1>
+        </div>
+
+    <div id="FA">
+        <input id="InputKey" type="text" placeholder=" Rekrod Login.."></input>
+
+        <input id="InputValue" type="text" placeholder=" Rekrod Haslo.."></input>
+
+        <h1>Funkcje:</h1>
+
+        <button type="button" id="Submit">Dodaj</button>
+
+        <button type="button" id="Remove">Usuń Rekord</button>
+
+        <button type="button" id="Clear">Wyczysc Rekordy</button>
+    </div>
+    </fieldset>
+
+</div>
+<div class="LStorage">
+    <fieldset>
+        <div id="PoleB">
+            <h1>Local Storage:</h1>
+            <div id="Output"></div>
+        </div>
+    </fieldset>
+</div>
+    
+</body>
+
+<script>
+    const InputKey = document.getElementById("InputKey");
+    const InputValue = document.getElementById("InputValue");
+    const Submit = document.getElementById("Submit");
+    const Output = document.getElementById("Output");
+
+    Submit.onclick = function(){
+        const login = InputKey.value;
+        const haslo = InputValue.value;
+        
+        if(login && haslo){
+            
+            localStorage.setItem(login,haslo);
+            location.reload();
+        }
+    };
+        for (let i=0; i < localStorage.length; i++){
+            const key = localStorage.key(i);
+            const haslo = localStorage.getItem(key);
+            console.log(key);
+            console.log(haslo);
+            
+            Output.innerHTML += key +" " +haslo +'</br>';
+        }
+    Remove.onclick = function(){
+        const login = InputKey.value;
+        const haslo = InputValue.value;
+
+        localStorage.removeItem(login,haslo);
+        location.reload();
+    };
+    Clear.onclick = function(){
+        const login = InputKey.value;
+        const haslo = InputValue.value;
+
+        localStorage.clear(login,haslo);
+        location.reload();
+    };
+</script>
+
+</html>
